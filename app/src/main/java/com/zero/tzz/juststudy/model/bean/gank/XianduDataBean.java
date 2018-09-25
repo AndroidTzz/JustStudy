@@ -287,4 +287,12 @@ public class XianduDataBean {
             }
         }
     }
+
+    @Override
+    public String toString() {
+        return "XianduDataBean{" +
+                "error=" + error +
+                ", results=" + results +
+                '}';
+    }
 }
