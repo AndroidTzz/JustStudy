@@ -1,18 +1,42 @@
 package com.zero.tzz.juststudy.ui.main;
 
-import android.widget.TextView;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
+import android.widget.FrameLayout;
 
 import com.zero.tzz.juststudy.R;
 import com.zero.tzz.juststudy.base.BaseActivity;
+import com.zero.tzz.juststudy.base.BaseFragment;
 import com.zero.tzz.juststudy.model.bean.gank.BaseBean;
 import com.zero.tzz.juststudy.model.bean.gank.Ganhuo;
+import com.zero.tzz.juststudy.ui.main.home.HomeFragment;
+import com.zero.tzz.juststudy.ui.main.meizi.MeiziFragment;
+import com.zero.tzz.juststudy.ui.main.more.MoreFragment;
+import com.zero.tzz.juststudy.ui.main.xiandu.XianduFragment;
+import com.zero.tzz.juststudy.utils.BottomNavigationViewHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View {
 
-    @BindView(R.id.tv)
-    TextView mTextView;
+    @BindView(R.id.container)
+    FrameLayout mContainer;
+    @BindView(R.id.home_bottom_navi_view)
+    BottomNavigationView mBottomNavigationView;
+
+    private List<BaseFragment> mFragments;
+    private HomeFragment mHomeFragment;
+    private XianduFragment mXianduFragment;
+    private MeiziFragment mMeiziFragment;
+    private MoreFragment mMoreFragment;
+
+    private int mLastFragmentPosition;
+    private ActionBar mActionBar;
 
     @Override
     protected int getLayoutId() {
@@ -26,11 +50,80 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     protected void initEventAndData() {
+        initView();
         mPresenter.ganhuo();
+    }
+
+    private void initView() {
+        initActionBar();
+        initFragment();
+        initNaviagtionView();
+    }
+
+    private void initActionBar() {
+        mActionBar = getSupportActionBar();
+        assert mActionBar != null;
+        mActionBar.setElevation(16);
+        mActionBar.setTitle(R.string.home);
+    }
+
+    private void initFragment() {
+        mFragments = new ArrayList<>();
+        mHomeFragment = new HomeFragment();
+        mXianduFragment = new XianduFragment();
+        mMeiziFragment = new MeiziFragment();
+        mMoreFragment = new MoreFragment();
+
+        mFragments.add(mHomeFragment);
+        mFragments.add(mXianduFragment);
+        mFragments.add(mMeiziFragment);
+        mFragments.add(mMoreFragment);
+    }
+
+    private void initNaviagtionView() {
+        BottomNavigationViewHelper.disableShiftMode(mBottomNavigationView);
+        switchFragment(mLastFragmentPosition);
+        mBottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.i_home:
+                    switchFragment(0);
+                    mActionBar.setTitle(R.string.home);
+                    break;
+                case R.id.i_xiandu:
+                    switchFragment(1);
+                    mActionBar.setTitle(R.string.xiandu);
+                    break;
+                case R.id.i_meizi:
+                    switchFragment(2);
+                    mActionBar.setTitle(R.string.meizi);
+                    break;
+                case R.id.i_more:
+                    switchFragment(3);
+                    mActionBar.setTitle(R.string.more);
+                    break;
+                default:
+                    break;
+            }
+            return true;
+        });
+    }
+
+    private void switchFragment(int position) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        BaseFragment currentFragment = mFragments.get(position);
+        BaseFragment lastFragment = mFragments.get(mLastFragmentPosition);
+        mLastFragmentPosition = position;
+        transaction.hide(lastFragment);
+        if (!currentFragment.isAdded()) {
+            transaction.add(R.id.container, currentFragment);
+        }
+        transaction.show(currentFragment);
+        transaction.commitAllowingStateLoss();
     }
 
     @Override
     public void success(BaseBean<Ganhuo> ganhuoBean) {
-        mTextView.setText(ganhuoBean.toString());
+
     }
 }

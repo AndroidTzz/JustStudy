@@ -10,12 +10,12 @@ public class BaseRxPresenter<T extends BaseView> implements BasePresenter<T> {
     protected T mView;
 
     @Override
-    public void attach(T view) {
+    public void attachView(T view) {
         this.mView = view;
     }
 
     @Override
-    public void detach() {
+    public void detachView() {
         mView = null;
     }
 }

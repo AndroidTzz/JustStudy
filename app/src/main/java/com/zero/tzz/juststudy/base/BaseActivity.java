@@ -28,8 +28,15 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         setContentView(getLayoutId());
         mBind = ButterKnife.bind(this);
         initInject();
-        onCreated();
+        init();
         initEventAndData();
+    }
+
+    private void init() {
+        if (mPresenter != null) {
+            mPresenter.attachView(this);
+        }
+        onCreated();
     }
 
     protected ActivityComponent getActivityComponent() {
@@ -47,17 +54,15 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
             mBind.unbind();
         }
         if (mPresenter != null) {
-            mPresenter.detach();
+            mPresenter.detachView();
         }
 
     }
 
     protected abstract int getLayoutId();
 
-    protected void onCreated() {
-        if (mPresenter != null) {
-            mPresenter.attach(this);
-        }
+    private void onCreated() {
+
     }
 
     protected abstract void initInject();

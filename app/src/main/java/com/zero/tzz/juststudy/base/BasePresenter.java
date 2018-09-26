@@ -8,7 +8,7 @@ package com.zero.tzz.juststudy.base;
 
 public interface BasePresenter<T extends BaseView> {
 
-    void attach(T view);
+    void attachView(T view);
 
-    void detach();
+    void detachView();
 }

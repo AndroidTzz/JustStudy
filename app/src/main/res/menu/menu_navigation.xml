@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/i_home"
+        android:checked="true"
+        android:icon="@drawable/home"
+        android:title="@string/home" />
+
+    <item
+        android:id="@+id/i_xiandu"
+        android:icon="@drawable/xiandu"
+        android:title="@string/xiandu" />
+
+    <item
+        android:id="@+id/i_meizi"
+        android:icon="@drawable/meizi"
+        android:title="@string/meizi" />
+    <item
+        android:id="@+id/i_more"
+        android:icon="@drawable/more"
+        android:title="@string/more" />
+</menu>

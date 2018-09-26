@@ -1,5 +1,6 @@
 package com.zero.tzz.juststudy.ui.main.home;
 
+import com.zero.tzz.juststudy.R;
 import com.zero.tzz.juststudy.base.BaseFragment;
 
 /**
@@ -10,4 +11,8 @@ import com.zero.tzz.juststudy.base.BaseFragment;
 
 public class HomeFragment extends BaseFragment {
 
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_home;
+    }
 }

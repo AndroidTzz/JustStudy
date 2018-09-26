@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">JustStudy</string>
+    <string name="home">干货</string>
+    <string name="xiandu">闲读</string>
+    <string name="meizi">妹子</string>
+    <string name="more">更多</string>
 </resources>
