@@ -1,6 +1,6 @@
 package com.zero.tzz.juststudy.di.component;
 
-import com.zero.tzz.juststudy.MainActivity;
+import com.zero.tzz.juststudy.ui.main.MainActivity;
 import com.zero.tzz.juststudy.di.module.ActivityMoudle;
 import com.zero.tzz.juststudy.di.scope.ActivityScope;
 

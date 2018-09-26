@@ -9,11 +9,16 @@ import com.zero.tzz.juststudy.di.component.DaggerActivityComponent;
 import com.zero.tzz.juststudy.di.module.ActivityMoudle;
 import com.zero.tzz.juststudy.global.JustApp;
 
+import javax.inject.Inject;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity implements BaseView {
+
+    @Inject
+    protected T mPresenter;
 
     private Unbinder mBind;
 
@@ -38,12 +43,21 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (mBind != null) mBind.unbind();
+        if (mBind != null) {
+            mBind.unbind();
+        }
+        if (mPresenter != null) {
+            mPresenter.detach();
+        }
+
     }
 
     protected abstract int getLayoutId();
 
     protected void onCreated() {
+        if (mPresenter != null) {
+            mPresenter.attach(this);
+        }
     }
 
     protected abstract void initInject();

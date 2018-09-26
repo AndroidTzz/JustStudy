@@ -1,10 +1,12 @@
 package com.zero.tzz.juststudy.model.http.api;
 
-import com.zero.tzz.juststudy.model.bean.gank.SearchBean;
-import com.zero.tzz.juststudy.model.bean.gank.TodayBean;
-import com.zero.tzz.juststudy.model.bean.gank.XianduChildBean;
-import com.zero.tzz.juststudy.model.bean.gank.XianduDataBean;
-import com.zero.tzz.juststudy.model.bean.gank.XianduMainBean;
+import com.zero.tzz.juststudy.model.bean.gank.BaseBean;
+import com.zero.tzz.juststudy.model.bean.gank.Ganhuo;
+import com.zero.tzz.juststudy.model.bean.gank.Search;
+import com.zero.tzz.juststudy.model.bean.gank.Today;
+import com.zero.tzz.juststudy.model.bean.gank.XianduChild;
+import com.zero.tzz.juststudy.model.bean.gank.XianduData;
+import com.zero.tzz.juststudy.model.bean.gank.XianduMain;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -20,16 +22,25 @@ public interface GankApi {
     String BASE_URL = "http://gank.io";
 
     /**
+     * "/api/data/数据类型/请求个数/第几页"
+     * 数据类型： 福利 | Android | iOS | 休息视频 | 拓展资源 | 前端 | all
+     * 请求个数： 数字，大于0
+     * 第几页：数字，大于0
+     */
+    @GET("/api/data/{type}/{count}/{page}")
+    Observable<BaseBean<Ganhuo>> ganhuo(@Path("type") String type, @Path("count") int count, @Path("page") int page);
+
+    /**
      * 获取最新一天的干货
      */
     @GET("/api/today")
-    Observable<TodayBean> today();
+    Observable<BaseBean<Today>> today();
 
     /**
      * 获取闲读的主分类
      */
     @GET("/api/xiandu/categories")
-    Observable<XianduMainBean> xianduMain();
+    Observable<BaseBean<XianduMain>> xianduMain();
 
     /**
      * 获取闲读的子分类
@@ -37,7 +48,7 @@ public interface GankApi {
      * @param en_name category 后面可接受参数为主分类返回的en_name,例如【apps， wow， android，iOS】
      */
     @GET("/api/xiandu/category/{name}")
-    Observable<XianduChildBean> xianduChild(@Path("name") String en_name);
+    Observable<BaseBean<XianduChild>> xianduChild(@Path("name") String en_name);
 
     /**
      * 获取闲读数据
@@ -47,7 +58,7 @@ public interface GankApi {
      * @param count 每页的个数
      */
     @GET("/api/xiandu/data/id/{id}/count/{count}/page/{page}")
-    Observable<XianduDataBean> xianduData(@Path("id") String id, @Path("count") int count, @Path("page") int page);
+    Observable<BaseBean<XianduData>> xianduData(@Path("id") String id, @Path("count") int count, @Path("page") int page);
 
 
     /**
@@ -60,6 +71,5 @@ public interface GankApi {
      * @param count 每页的个数
      */
     @GET("/api/search/query/listview/category/{name}/count/{count}/page/{page}")
-    Observable<SearchBean> search(@Path("name") String name, @Path("count") int count, @Path("page") int page);
-
+    Observable<BaseBean<Search>> search(@Path("name") String name, @Path("count") int count, @Path("page") int page);
 }

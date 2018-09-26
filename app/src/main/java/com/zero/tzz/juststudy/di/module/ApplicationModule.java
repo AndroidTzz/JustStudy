@@ -2,8 +2,12 @@ package com.zero.tzz.juststudy.di.module;
 
 import com.zero.tzz.juststudy.global.JustApp;
 import com.zero.tzz.juststudy.model.DataManager;
+import com.zero.tzz.juststudy.model.db.DbHelper;
+import com.zero.tzz.juststudy.model.db.DbHelperImpl;
 import com.zero.tzz.juststudy.model.http.HttpHelper;
-import com.zero.tzz.juststudy.model.http.RetrofitHelper;
+import com.zero.tzz.juststudy.model.http.HttpHelperImpl;
+import com.zero.tzz.juststudy.model.prefs.PrefrencesHelper;
+import com.zero.tzz.juststudy.model.prefs.PrefrencesHeplerImpl;
 
 import javax.inject.Singleton;
 
@@ -26,16 +30,28 @@ public class ApplicationModule {
     }
 
     // 获取HttpHelper实例
-    // 由于RetrofitHelper实现了HttpHelper接口，最终HttpHelper的调用会在RetrofitHelper中执行
+    // 由于HttpHelperImpl实现了HttpHelper接口，最终HttpHelper的调用会在HttpHelperImpl中执行
     @Singleton
     @Provides
-    public HttpHelper provideRetrofitHelper(RetrofitHelper helper) {
+    public HttpHelper provideHttpHelper(HttpHelperImpl helper) {
         return helper;
     }
 
     @Singleton
     @Provides
-    public DataManager provideDataManager(HttpHelper httpHelper) {
-        return new DataManager(httpHelper);
+    public DbHelper provideDbHelper(DbHelperImpl dbHelper) {
+        return dbHelper;
+    }
+
+    @Singleton
+    @Provides
+    public PrefrencesHelper providePrefrencesHelper(PrefrencesHeplerImpl prefrencesHepler) {
+        return prefrencesHepler;
+    }
+
+    @Singleton
+    @Provides
+    public DataManager provideDataManager(HttpHelper httpHelper, DbHelper dbHelper, PrefrencesHelper prefrencesHepler) {
+        return new DataManager(httpHelper, dbHelper, prefrencesHepler);
     }
 }
