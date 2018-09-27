@@ -3,6 +3,7 @@ package com.zero.tzz.juststudy.ui.main.meizi;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -71,17 +72,16 @@ public class MeiziFragment extends BaseRxFragment<MeiziPresenter> implements Mei
         mRecyclerView.addOnScrollListener(mScrollListener);
         mMeiziLists = new ArrayList<>();
         mAdapter = new MeiziAdapter(mContext,R.layout.item_meizi, mMeiziLists);
-        View footerView = LayoutInflater.from(mContext).inflate(R.layout.footer_view, null);
-        mAdapter.addFooterView(footerView);
         mAdapter.setOnItemClickListener((adapter, view, position) ->
                 startShowMeiziActivity(view, position)
         );
 
         mRecyclerView.setAdapter(mAdapter);
-
-        mSwipeRefreshLayout.setOnRefreshListener(() ->
-                refresh(false)
-        );
+        mSwipeRefreshLayout.setColorSchemeColors(ContextCompat.getColor(mContext, R.color.colorPrimary));
+        mSwipeRefreshLayout.setOnRefreshListener(() -> {
+            refresh(false);
+            mScrollListener.resetState();
+        });
     }
 
     private void startShowMeiziActivity(View view, int position) {
@@ -104,6 +104,11 @@ public class MeiziFragment extends BaseRxFragment<MeiziPresenter> implements Mei
 
     @Override
     public void onSuccess(BaseBean<Ganhuo> bean) {
+        // 添加FooterView
+        if (mAdapter.getFooterLayoutCount() == 0) {
+            View footerView = LayoutInflater.from(mContext).inflate(R.layout.footer_view, null);
+            mAdapter.addFooterView(footerView);
+        }
         mSwipeRefreshLayout.setRefreshing(false);
         List<Ganhuo> data = bean.getData();
         if (mCurrentPage == 1) {

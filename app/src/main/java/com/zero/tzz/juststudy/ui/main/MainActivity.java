@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.zero.tzz.juststudy.R;
 import com.zero.tzz.juststudy.base.BaseFragment;
@@ -37,6 +38,7 @@ public class MainActivity extends BaseRxActivity<MainPresenter> implements MainC
 
     private int mLastFragmentPosition;
     private ActionBar mActionBar;
+    private long mLastTime;
 
     @Override
     protected int getLayoutId() {
@@ -51,7 +53,6 @@ public class MainActivity extends BaseRxActivity<MainPresenter> implements MainC
     @Override
     protected void initEventAndData() {
         initView();
-        mPresenter.ganhuo();
     }
 
     private void initView() {
@@ -125,5 +126,15 @@ public class MainActivity extends BaseRxActivity<MainPresenter> implements MainC
     @Override
     public void success(BaseBean<Ganhuo> ganhuoBean) {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (System.currentTimeMillis() - mLastTime < 2000) {
+            super.onBackPressed();
+        } else {
+            mLastTime = System.currentTimeMillis();
+            Toast.makeText(this, "再按一次退出~", Toast.LENGTH_SHORT).show();
+        }
     }
 }
