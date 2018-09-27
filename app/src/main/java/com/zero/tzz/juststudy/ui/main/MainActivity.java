@@ -7,8 +7,8 @@ import android.support.v7.app.ActionBar;
 import android.widget.FrameLayout;
 
 import com.zero.tzz.juststudy.R;
-import com.zero.tzz.juststudy.base.BaseActivity;
 import com.zero.tzz.juststudy.base.BaseFragment;
+import com.zero.tzz.juststudy.base.BaseRxActivity;
 import com.zero.tzz.juststudy.model.bean.gank.BaseBean;
 import com.zero.tzz.juststudy.model.bean.gank.Ganhuo;
 import com.zero.tzz.juststudy.ui.main.home.HomeFragment;
@@ -22,7 +22,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View {
+public class MainActivity extends BaseRxActivity<MainPresenter> implements MainContract.View {
 
     @BindView(R.id.container)
     FrameLayout mContainer;

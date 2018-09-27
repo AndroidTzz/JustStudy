@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+    <com.github.chrisbanes.photoview.PhotoView
+        android:id="@+id/iv_show_meizi"
+        android:scaleType="fitCenter"
+        android:transitionName="share"
+        android:background="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <ImageView
+        android:id="@+id/iv_download"
+        android:layout_margin="20dp"
+        android:padding="6dp"
+        android:layout_gravity="bottom|end"
+        android:src="@drawable/download"
+        android:layout_width="35dp"
+        android:layout_height="35dp"/>
+</FrameLayout>

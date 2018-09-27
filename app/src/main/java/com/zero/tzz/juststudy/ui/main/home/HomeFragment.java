@@ -15,4 +15,9 @@ public class HomeFragment extends BaseFragment {
     protected int getLayoutId() {
         return R.layout.fragment_home;
     }
+
+    @Override
+    protected void initDataAndEvent() {
+
+    }
 }

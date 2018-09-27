@@ -3,6 +3,8 @@
           package="com.zero.tzz.juststudy">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".global.JustApp"
@@ -19,6 +21,10 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.main.meizi.ShowMeiziActivity"
+            android:theme="@style/NoTitle"/>
     </application>
 
 </manifest>

@@ -9,4 +9,9 @@ public class XianduFragment extends BaseFragment {
     protected int getLayoutId() {
         return R.layout.fragment_xiandu;
     }
+
+    @Override
+    protected void initDataAndEvent() {
+
+    }
 }

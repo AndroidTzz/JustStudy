@@ -8,4 +8,9 @@ public class MoreFragment extends BaseFragment {
     protected int getLayoutId() {
         return R.layout.fragment_more;
     }
+
+    @Override
+    protected void initDataAndEvent() {
+
+    }
 }

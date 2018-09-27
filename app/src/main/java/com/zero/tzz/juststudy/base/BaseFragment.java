@@ -1,5 +1,6 @@
 package com.zero.tzz.juststudy.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -19,13 +20,33 @@ import butterknife.Unbinder;
 public abstract class BaseFragment extends Fragment {
 
     private Unbinder mBind;
+    protected Context mContext;
+
+    @Override
+    public void onAttach(Context context) {
+        mContext = context;
+        super.onAttach(context);
+    }
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(getLayoutId(), null);
-        mBind = ButterKnife.bind(view);
+        mBind = ButterKnife.bind(this, view);
         return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        init();
+        initDataAndEvent();
+    }
+
+
+    protected void init() {
+
     }
 
     @Override
@@ -37,4 +58,6 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected abstract int getLayoutId();
+
+    protected abstract void initDataAndEvent();
 }

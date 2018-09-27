@@ -4,7 +4,7 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.zero.tzz.juststudy"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -53,6 +53,11 @@ dependencies {
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34'
     // design
     implementation 'com.android.support:design:26+'
+    // photoview
+    implementation 'com.github.chrisbanes:PhotoView:2.1.4'
+    //permission
+    implementation 'com.github.jokermonn:permissions4m:2.1.2-lib'
+    annotationProcessor 'com.github.jokermonn:permissions4m:2.1.2-processor'
 }
 //解决支持库版本不兼容问题
 configurations.all {
