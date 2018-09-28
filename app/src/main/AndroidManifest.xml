@@ -25,6 +25,9 @@
         <activity
             android:name=".ui.main.meizi.ShowMeiziActivity"
             android:theme="@style/NoTitle"/>
+        <activity
+            android:name=".ui.web.WebViewActivity"
+            android:theme="@style/NoTitle"/>
     </application>
 
 </manifest>
