@@ -8,10 +8,8 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.zero.tzz.juststudy.R;
+import com.zero.tzz.juststudy.base.BaseActivity;
 import com.zero.tzz.juststudy.base.BaseFragment;
-import com.zero.tzz.juststudy.base.BaseRxActivity;
-import com.zero.tzz.juststudy.model.bean.gank.BaseBean;
-import com.zero.tzz.juststudy.model.bean.gank.Ganhuo;
 import com.zero.tzz.juststudy.ui.main.home.HomeFragment;
 import com.zero.tzz.juststudy.ui.main.meizi.MeiziFragment;
 import com.zero.tzz.juststudy.ui.main.more.MoreFragment;
@@ -23,7 +21,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class MainActivity extends BaseRxActivity<MainPresenter> implements MainContract.View {
+public class MainActivity extends BaseActivity{
 
     @BindView(R.id.container)
     FrameLayout mContainer;
@@ -43,11 +41,6 @@ public class MainActivity extends BaseRxActivity<MainPresenter> implements MainC
     @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
-    }
-
-    @Override
-    protected void initInject() {
-        getActivityComponent().inject(this);
     }
 
     @Override
@@ -121,11 +114,6 @@ public class MainActivity extends BaseRxActivity<MainPresenter> implements MainC
         }
         transaction.show(currentFragment);
         transaction.commitAllowingStateLoss();
-    }
-
-    @Override
-    public void success(BaseBean<Ganhuo> ganhuoBean) {
-
     }
 
     @Override
