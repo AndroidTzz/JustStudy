@@ -4,12 +4,11 @@ import com.zero.tzz.juststudy.base.BaseRxPresenter;
 import com.zero.tzz.juststudy.model.DataManager;
 import com.zero.tzz.juststudy.model.bean.gank.BaseBean;
 import com.zero.tzz.juststudy.model.bean.gank.Ganhuo;
+import com.zero.tzz.juststudy.model.http.BaseCommonObserver;
 
 import javax.inject.Inject;
 
-import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -30,30 +29,15 @@ public class HomePresenter extends BaseRxPresenter<HomeContract.View> implements
 
     @Override
     public void getGanhuo(String type, int count, int page) {
-        mDataManager
+        addSubscribe(mDataManager
                 .ganhuo(type, count, page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<BaseBean<Ganhuo>>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
+                .subscribeWith(new BaseCommonObserver<BaseBean<Ganhuo>>(mView) {
                     @Override
                     public void onNext(BaseBean<Ganhuo> bean) {
-                        mView.onSuccess(bean);
+                        mView.showGanhuo(bean);
                     }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        mView.onError(e.getMessage());
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
+                }));
     }
 }

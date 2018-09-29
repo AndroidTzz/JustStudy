@@ -13,9 +13,7 @@ import com.zero.tzz.juststudy.model.bean.gank.Ganhuo;
 
 public interface MeiziContract {
     interface View extends BaseView {
-        void onSuccess(BaseBean<Ganhuo> bean);
-
-        void onError(String errorMsg);
+        void showMeizi(BaseBean<Ganhuo> bean);
     }
 
     interface Presenter extends BasePresenter<View> {

@@ -1,22 +1,23 @@
-package com.zero.tzz.juststudy.ui.main.xiandu;
+package com.zero.tzz.juststudy.ui.main.xiandu.page.detail;
 
 import com.zero.tzz.juststudy.base.BasePresenter;
 import com.zero.tzz.juststudy.base.BaseView;
 import com.zero.tzz.juststudy.model.bean.gank.BaseBean;
-import com.zero.tzz.juststudy.model.bean.gank.XianduMain;
+import com.zero.tzz.juststudy.model.bean.gank.XianduData;
 
 /**
  * @author lucy
- * @date 2018-09-27 09:59
+ * @date 2018-09-29 13:26
  * @description //TODO
  */
 
-public interface XianduContract {
+public interface XianduDetailContract {
     interface View extends BaseView {
-        void showXianduMain(BaseBean<XianduMain> bean);
+        void showXianduDetail(BaseBean<XianduData> bean);
     }
 
     interface Presenter extends BasePresenter<View> {
-        void getXianduMain();
+        void getXianduData(String id, int count, int page);
     }
+
 }

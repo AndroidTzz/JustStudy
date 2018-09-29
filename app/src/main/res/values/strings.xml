@@ -4,4 +4,6 @@
     <string name="xiandu">闲读</string>
     <string name="meizi">妹子</string>
     <string name="more">更多</string>
+    <string name="action_refresh">刷新</string>
+    <string name="action_share">分享</string>
 </resources>

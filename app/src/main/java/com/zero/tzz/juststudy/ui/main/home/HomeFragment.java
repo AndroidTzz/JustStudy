@@ -52,7 +52,7 @@ public class HomeFragment extends BaseFragment {
 
     private void initFragment() {
         for (int i = 0; i < mTitles.length; i++) {
-            mFragments[i] = HomeItemFragment.getInstance(mTitles[i]);
+            mFragments[i] = HomePageFragment.getInstance(mTitles[i]);
         }
     }
 }

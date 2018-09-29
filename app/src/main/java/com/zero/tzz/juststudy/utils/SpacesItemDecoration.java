@@ -6,9 +6,16 @@ import android.view.View;
 
 public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
     private int space;
+    private int l;
+    private int b;
+    private int t;
+    private int r;
 
-    public SpacesItemDecoration(int space) {
-        this.space = space;
+    public SpacesItemDecoration(int l,int b,int t,int r) {
+        this.l = l;
+        this.b = b;
+        this.t = t;
+        this.r = r;
     }
 
     @Override
@@ -35,9 +42,9 @@ public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
 //            outRect.right = space;
 //            outRect.left = space / 2;
 //        }
-        outRect.top = space;
-        outRect.bottom = space;
-        outRect.right = space;
-        outRect.left = space;
+        outRect.top = t;
+        outRect.bottom = b;
+        outRect.right = r;
+        outRect.left = l;
     }
 }

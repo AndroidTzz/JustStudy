@@ -7,4 +7,5 @@ package com.zero.tzz.juststudy.base;
  */
 
 public interface BaseView {
+    void onError(String errorMsg);
 }

@@ -1,9 +1,9 @@
-package com.zero.tzz.juststudy.ui.main.xiandu;
+package com.zero.tzz.juststudy.ui.main.xiandu.page.detail;
 
 import com.zero.tzz.juststudy.base.BaseRxPresenter;
 import com.zero.tzz.juststudy.model.DataManager;
 import com.zero.tzz.juststudy.model.bean.gank.BaseBean;
-import com.zero.tzz.juststudy.model.bean.gank.XianduMain;
+import com.zero.tzz.juststudy.model.bean.gank.XianduData;
 import com.zero.tzz.juststudy.model.http.BaseCommonObserver;
 
 import javax.inject.Inject;
@@ -13,31 +13,30 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author lucy
- * @date 2018-09-27 10:00
+ * @date 2018-09-29 13:30
  * @description //TODO
  */
 
-public class XianduPresenter extends BaseRxPresenter<XianduContract.View> implements XianduContract.Presenter {
-
+public class XianduDetailPresenter extends BaseRxPresenter<XianduDetailContract.View> implements XianduDetailContract.Presenter {
     private DataManager mDataManager;
 
     @Inject
-    public XianduPresenter(DataManager dataManager) {
+    public XianduDetailPresenter(DataManager dataManager) {
         mDataManager = dataManager;
     }
 
-
     @Override
-    public void getXianduMain() {
+    public void getXianduData(String id, int count, int page) {
         addSubscribe(mDataManager
-                .xianduMain()
+                .xianduData(id, count, page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new BaseCommonObserver<BaseBean<XianduMain>>(mView) {
+                .subscribeWith(new BaseCommonObserver<BaseBean<XianduData>>(mView) {
                     @Override
-                    public void onNext(BaseBean<XianduMain> bean) {
-                        mView.showXianduMain(bean);
+                    public void onNext(BaseBean<XianduData> bean) {
+                        mView.showXianduDetail(bean);
                     }
-                }));
+                })
+        );
     }
 }
