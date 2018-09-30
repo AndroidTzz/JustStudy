@@ -46,4 +46,14 @@ public class DataManager implements HttpHelper, DbHelper, PrefrencesHelper {
     public Observable<BaseBean<XianduData>> xianduData(String id, int count, int page) {
         return mHttpHelper.xianduData(id, count, page);
     }
+
+    @Override
+    public int getThemeMode() {
+        return mPrefrencesHelper.getThemeMode();
+    }
+
+    @Override
+    public void setThemeMode(int mode) {
+        mPrefrencesHelper.setThemeMode(mode);
+    }
 }

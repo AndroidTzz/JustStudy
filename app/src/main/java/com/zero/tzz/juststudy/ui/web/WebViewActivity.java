@@ -73,7 +73,9 @@ public class WebViewActivity extends BaseActivity {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 super.onProgressChanged(view, newProgress);
-                progress_bar.setProgress(newProgress);
+                if (progress_bar != null) {
+                    progress_bar.setProgress(newProgress);
+                }
             }
         };
     }

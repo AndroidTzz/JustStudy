@@ -28,8 +28,11 @@
         <activity
             android:name=".ui.web.WebViewActivity"
             android:theme="@style/NoTitle"/>
-        <activity android:name=".ui.main.xiandu.page.detail.XianduDetailActivity"
+        <activity
+            android:name=".ui.main.xiandu.page.detail.XianduDetailActivity"
             android:theme="@style/NoTitle"/>
+        <activity android:name=".ui.settings.SettingsActivity"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

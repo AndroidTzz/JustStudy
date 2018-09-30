@@ -2,6 +2,7 @@ package com.zero.tzz.juststudy.global;
 
 import android.app.Activity;
 import android.app.Application;
+import android.support.v7.app.AppCompatDelegate;
 
 import com.zero.tzz.juststudy.di.component.ApplicationComponent;
 import com.zero.tzz.juststudy.di.component.DaggerApplicationComponent;
@@ -23,10 +24,12 @@ public class JustApp extends Application {
         return instance;
     }
 
+
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
+        AppCompatDelegate.setDefaultNightMode(getApplicationComponent().getDataManager().getThemeMode());
     }
 
     public void addActivity(Activity activity) {

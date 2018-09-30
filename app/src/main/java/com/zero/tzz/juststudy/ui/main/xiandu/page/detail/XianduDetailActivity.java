@@ -65,7 +65,6 @@ public class XianduDetailActivity extends BaseRxActivity<XianduDetailPresenter> 
         mTitle = getIntent().getStringExtra("title");
         mIcon = getIntent().getStringExtra("icon");
 
-        mToolbar.setNavigationIcon(R.mipmap.close);
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
         mToolbar.setNavigationOnClickListener(v -> finish());
