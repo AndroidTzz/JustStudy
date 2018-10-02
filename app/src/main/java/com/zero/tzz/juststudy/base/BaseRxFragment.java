@@ -1,5 +1,7 @@
 package com.zero.tzz.juststudy.base;
 
+import android.widget.Toast;
+
 import com.zero.tzz.juststudy.di.component.DaggerFragmentComponent;
 import com.zero.tzz.juststudy.di.component.FragmentComponent;
 import com.zero.tzz.juststudy.di.module.FragmentModule;
@@ -45,6 +47,11 @@ public abstract class BaseRxFragment<T extends BasePresenter> extends BaseFragme
         if (mPresenter != null) {
             mPresenter.detachView();
         }
+    }
+
+    @Override
+    public void onError(String errorMsg) {
+        Toast.makeText(mContext, "数据加载失败:" + errorMsg, Toast.LENGTH_SHORT).show();
     }
 
     protected abstract void initInject();

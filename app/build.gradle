@@ -58,6 +58,9 @@ dependencies {
     //permission
     implementation 'com.github.jokermonn:permissions4m:2.1.2-lib'
     annotationProcessor 'com.github.jokermonn:permissions4m:2.1.2-processor'
+    //circle
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+    implementation 'org.jsoup:jsoup:1.11.3'
 }
 //解决支持库版本不兼容问题
 configurations.all {

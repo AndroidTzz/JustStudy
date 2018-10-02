@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Toast;
 
 import com.zero.tzz.juststudy.R;
 import com.zero.tzz.juststudy.base.BaseRxFragment;
@@ -61,7 +60,7 @@ public class MeiziFragment extends BaseRxFragment<MeiziPresenter> implements Mei
         mStaggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(mStaggeredGridLayoutManager);
         mStaggeredGridLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
-        mRecyclerView.addItemDecoration(new SpacesItemDecoration(6));
+        mRecyclerView.addItemDecoration(new SpacesItemDecoration(6,6,6,6));
         mScrollListener = new EndlessRecyclerViewScrollListener(mStaggeredGridLayoutManager) {
 
             @Override
@@ -103,7 +102,7 @@ public class MeiziFragment extends BaseRxFragment<MeiziPresenter> implements Mei
     }
 
     @Override
-    public void onSuccess(BaseBean<Ganhuo> bean) {
+    public void showMeizi(BaseBean<Ganhuo> bean) {
         // 添加FooterView
         if (mAdapter.getFooterLayoutCount() == 0) {
             View footerView = LayoutInflater.from(mContext).inflate(R.layout.footer_view, null);
@@ -123,7 +122,7 @@ public class MeiziFragment extends BaseRxFragment<MeiziPresenter> implements Mei
 
     @Override
     public void onError(String errorMsg) {
+        super.onError(errorMsg);
         mSwipeRefreshLayout.setRefreshing(false);
-        Toast.makeText(mContext, "errorMsg", Toast.LENGTH_SHORT).show();
     }
 }

@@ -14,9 +14,9 @@ import com.zero.tzz.juststudy.model.bean.gank.Ganhuo;
 import java.util.List;
 
 
-public class HomeItemAdapter extends BaseQuickAdapter<Ganhuo, HomeItemAdapter.HomeItemViewholder> {
+public class HomePageAdapter extends BaseQuickAdapter<Ganhuo, HomePageAdapter.HomeItemViewholder> {
 
-    public HomeItemAdapter(int layoutResId, @Nullable List<Ganhuo> data) {
+    public HomePageAdapter(int layoutResId, @Nullable List<Ganhuo> data) {
         super(layoutResId, data);
     }
 

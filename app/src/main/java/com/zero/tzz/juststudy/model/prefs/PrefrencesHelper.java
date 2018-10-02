@@ -7,4 +7,7 @@ package com.zero.tzz.juststudy.model.prefs;
  */
 
 public interface PrefrencesHelper {
+    int getThemeMode();
+
+    void setThemeMode(int mode);
 }
