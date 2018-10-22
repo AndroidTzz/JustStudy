@@ -11,7 +11,7 @@ import com.zero.tzz.juststudy.base.BaseView;
 
 public interface SettingsContract {
     interface View extends BaseView {
-        void setTheme(int mode);
+        void setCurrentTheme(int mode);
     }
 
     interface Presenter extends BasePresenter<View> {

@@ -3,7 +3,7 @@ package com.zero.tzz.juststudy.ui.main;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -23,6 +23,8 @@ import butterknife.BindView;
 
 public class MainActivity extends BaseActivity{
 
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
     @BindView(R.id.container)
     FrameLayout mContainer;
     @BindView(R.id.home_bottom_navi_view)
@@ -35,7 +37,6 @@ public class MainActivity extends BaseActivity{
     private MoreFragment mMoreFragment;
 
     private int mLastFragmentPosition;
-    private ActionBar mActionBar;
     private long mLastTime;
 
     @Override
@@ -55,10 +56,9 @@ public class MainActivity extends BaseActivity{
     }
 
     private void initActionBar() {
-        mActionBar = getSupportActionBar();
-        assert mActionBar != null;
-        mActionBar.setElevation(16);
-        mActionBar.setTitle(R.string.home);
+        mToolbar.setElevation(16);
+        mToolbar.setTitle(R.string.home);
+        setSupportActionBar(mToolbar);
     }
 
     private void initFragment() {
@@ -81,19 +81,19 @@ public class MainActivity extends BaseActivity{
             switch (item.getItemId()) {
                 case R.id.i_home:
                     switchFragment(0);
-                    mActionBar.setTitle(R.string.home);
+                    mToolbar.setTitle(R.string.home);
                     break;
                 case R.id.i_xiandu:
                     switchFragment(1);
-                    mActionBar.setTitle(R.string.xiandu);
+                    mToolbar.setTitle(R.string.xiandu);
                     break;
                 case R.id.i_meizi:
                     switchFragment(2);
-                    mActionBar.setTitle(R.string.meizi);
+                    mToolbar.setTitle(R.string.meizi);
                     break;
                 case R.id.i_more:
                     switchFragment(3);
-                    mActionBar.setTitle(R.string.more);
+                    mToolbar.setTitle(R.string.more);
                     break;
                 default:
                     break;

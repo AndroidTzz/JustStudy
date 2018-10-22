@@ -15,21 +15,17 @@ import butterknife.BindView;
  */
 
 public class SettingsActivity extends BaseRxActivity<SettingsPresenter> implements SettingsContract.View {
-    @Override
-    public void onError(String errorMsg) {
-
-    }
-
     @BindView(R.id.tv)
     TextView tv;
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_more;
+        return R.layout.activity_settings;
     }
 
     @Override
     protected void initEventAndData() {
+        tv.setText("setting");
         tv.setOnClickListener((view) ->
                 mPresenter.changeThemeMode()
         );
@@ -41,7 +37,12 @@ public class SettingsActivity extends BaseRxActivity<SettingsPresenter> implemen
     }
 
     @Override
-    public void setTheme(int mode) {
+    public void onError(String errorMsg) {
+
+    }
+
+    @Override
+    public void setCurrentTheme(int mode) {
         //获取当前的模式，设置相反的模式，这里只使用了，夜间和非夜间模式
         AppCompatDelegate.setDefaultNightMode(mode);
         recreate();

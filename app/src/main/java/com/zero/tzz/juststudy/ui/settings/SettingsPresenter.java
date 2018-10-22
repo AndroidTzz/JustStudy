@@ -28,10 +28,10 @@ public class SettingsPresenter extends BaseRxPresenter<SettingsContract.View> im
         int mode = mDataManager.getThemeMode();
         if (mode == Configuration.UI_MODE_NIGHT_YES) {
             mDataManager.setThemeMode(Configuration.UI_MODE_NIGHT_NO);
-            mView.setTheme(AppCompatDelegate.MODE_NIGHT_NO);
+            mView.setCurrentTheme(AppCompatDelegate.MODE_NIGHT_NO);
         } else {
             mDataManager.setThemeMode(Configuration.UI_MODE_NIGHT_YES);
-            mView.setTheme(AppCompatDelegate.MODE_NIGHT_YES);
+            mView.setCurrentTheme(AppCompatDelegate.MODE_NIGHT_YES);
         }
     }
 }
