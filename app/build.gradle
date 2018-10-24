@@ -61,6 +61,8 @@ dependencies {
     //circle
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'org.jsoup:jsoup:1.11.3'
+    implementation 'com.afollestad.material-dialogs:commons:0.9.4.4'
+    implementation project(':swipeback')
 }
 //解决支持库版本不兼容问题
 configurations.all {

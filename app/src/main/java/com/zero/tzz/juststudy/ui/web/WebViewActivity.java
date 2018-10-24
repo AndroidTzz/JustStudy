@@ -98,7 +98,7 @@ public class WebViewActivity extends BaseActivity {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
-                if (progress_bar.getVisibility() == View.GONE) {
+                if (progress_bar != null && progress_bar.getVisibility() == View.GONE) {
                     progress_bar.setVisibility(View.VISIBLE);
                 }
             }
@@ -106,7 +106,7 @@ public class WebViewActivity extends BaseActivity {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                if (progress_bar.getVisibility() == View.VISIBLE) {
+                if (progress_bar != null && progress_bar.getVisibility() == View.VISIBLE) {
                     progress_bar.setVisibility(View.GONE);
                 }
             }

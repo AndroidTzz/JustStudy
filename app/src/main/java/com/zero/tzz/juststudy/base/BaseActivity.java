@@ -2,13 +2,14 @@ package com.zero.tzz.juststudy.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+
+import com.zero.tzz.swipeback.BaseSwipeBackActivity;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends BaseSwipeBackActivity {
 
     private Unbinder mBind;
 

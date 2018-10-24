@@ -49,6 +49,11 @@ public class MainActivity extends BaseActivity{
         initView();
     }
 
+    @Override
+    public boolean isSupportSwipeBack() {
+        return false;
+    }
+
     private void initView() {
         initActionBar();
         initFragment();
